@@ -7,10 +7,10 @@ public class Turno {
     private int codigo;
     private Actividad actividad;
     private int cupoMax;
-    private Date fecha;
+    private String fecha;
     private int cuposDisponibles;
 
-    public Turno(int codigo, Actividad actividad, int cupoMax, Date fecha, int cuposDisponibles) {
+    public Turno(int codigo, Actividad actividad, int cupoMax, String fecha, int cuposDisponibles) {
         this.codigo = codigo;
         this.actividad = actividad;
         this.cupoMax = cupoMax;
@@ -58,11 +58,11 @@ public class Turno {
         this.cupoMax = cupoMax;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

@@ -7,7 +7,7 @@ public class Socio extends Persona {
     private boolean estado;
     private int creditos;
 
-    public Socio(String nombre, String apellido, Date fechaAlta, Date fechaBaja, int documento, TipoDocumento tipoDocumento, int telefono, boolean estado, int creditos) {
+    public Socio(String nombre, String apellido, String fechaAlta, String fechaBaja, int documento, TipoDocumento tipoDocumento, int telefono, boolean estado, int creditos) {
         super(nombre, apellido, fechaAlta, fechaBaja, documento, tipoDocumento);
         this.telefono = telefono;
         this.estado = estado;

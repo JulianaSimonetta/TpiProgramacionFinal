@@ -1,16 +1,14 @@
 ﻿package Modelo;
 
-import java.util.Date;
-
 public abstract class Persona {
     private String nombre;
     private String apellido;
-    private Date fechaAlta;
-    private Date fechaBaja;
+    private String fechaAlta;
+    private String fechaBaja;
     private TipoDocumento tipoDocumento;
     private int documento;
 
-    public Persona(String nombre, String apellido, Date fechaAlta, Date fechaBaja, int documento, TipoDocumento tipoDocumento) {
+    public Persona(String nombre, String apellido, String fechaAlta, String fechaBaja, int documento, TipoDocumento tipoDocumento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaAlta = fechaAlta;
@@ -35,19 +33,19 @@ public abstract class Persona {
         this.apellido = apellido;
     }
 
-    public Date getFechaAlta() {
+    public String getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(String fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 
-    public Date getFechaBaja() {
+    public String getFechaBaja() {
         return fechaBaja;
     }
 
-    public void setFechaBaja(Date fechaBaja) {
+    public void setFechaBaja(String fechaBaja) {
         this.fechaBaja = fechaBaja;
     }
 

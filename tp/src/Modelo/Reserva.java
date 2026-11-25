@@ -7,7 +7,7 @@ public class Reserva {
     private Turno turno;
     private Socio socio;
     private boolean estado;
-    private Date fecha;
+    private String fecha;
 
     public Reserva(int codigo, Turno turno, boolean estado, Socio socio) {
         this.codigo = codigo;
