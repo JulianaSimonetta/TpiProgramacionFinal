@@ -17,12 +17,46 @@ public class ControladorPersona {
         this.listPersonas = listPersonas;
     }
 
-    public Persona crearPersona(){
-        String nombreApellido = vista.solicitarNombreApellido();
+    public Persona crearSocio(){
+        String nombre = vista.solicitarNombre();
+        String apellido = vista.solicitarApellido();
         String fechaAlta = vista.solicitarFechaAlta();
         String fechaBaja = vista.solicitarFechaBaja();
+        String tipoDocumento = vista.tipoDocumentoDesc();
+        int codigoTipoDocumento = vista.solicitarCodigoDocumento();
         int documento = vista.solicitarDocumento();
+        int telefono = vista.solicitarTelSocio();
+        int creditos = vista.solicitarCreditosSocio();
+        boolean estado = vista.solictarEstadoSocio();
+
+        Socio socio = new Socio(nombre, apellido, fechaAlta, fechaBaja, documento, tipoDocumento, codigoTipoDocumento, telefono, estado, creditos) ;
+        listPersonas.add(socio);
+        return socio;
+    }
+
+    public Persona crearInstructor() {
+        String nombre = vista.solicitarNombre();
+        String apellido = vista.solicitarApellido();
+        String fechaAlta = vista.solicitarFechaAlta();
+        String fechaBaja = vista.solicitarFechaBaja();
+        String tipoDocumento = vista.tipoDocumentoDesc();
+        int codigoTipoDocumento = vista.solicitarCodigoDocumento();
+        int documento = vista.solicitarDocumento();
+        int codigoInstructor = vista.solicitarCodigoInstructor();
 
 
+        Instructor instructor = new Socio(nombre, apellido, fechaAlta, fechaBaja, documento, tipoDocumento, codigoTipoDocumento, codigoInstructor);
+        listPersonas.add(instructor);
+        return instructor;
+    }
+
+    public Persona filtarSocio(int documento){
+        Persona socioFiltrado = null;
+        for (Persona socio: listPersonas){
+            if (documento == socio.getDocumento()){
+                socioFiltrado = socio;
+            }
+        }
+        return socioFiltrado;
     }
 }
