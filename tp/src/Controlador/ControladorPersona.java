@@ -3,6 +3,7 @@
 import Modelo.Instructor;
 import Modelo.Persona;
 import Modelo.Socio;
+import Modelo.TipoDocumento;
 import Vista.VistaPersona;
 
 import java.util.List;
@@ -10,10 +11,12 @@ import java.util.List;
 public class ControladorPersona {
     private VistaPersona vista;
     private Persona modelo;
+    private ControladorTipoDocumento controladorTipoDocumento;
     private List<Persona> listPersonas;
 
-    public ControladorPersona(VistaPersona vista, List<Persona> listPersonas) {
+    public ControladorPersona(VistaPersona vista, ControladorTipoDocumento controladorTipoDocumento, List<Persona> listPersonas) {
         this.vista = vista;
+        this.controladorTipoDocumento = controladorTipoDocumento;
         this.listPersonas = listPersonas;
     }
 
@@ -22,14 +25,13 @@ public class ControladorPersona {
         String apellido = vista.solicitarApellido();
         String fechaAlta = vista.solicitarFechaAlta();
         String fechaBaja = vista.solicitarFechaBaja();
-        String tipoDocumento = vista.tipoDocumentoDesc();
-        int codigoTipoDocumento = vista.solicitarCodigoDocumento();
+        TipoDocumento tipoDocumento = controladorTipoDocumento.crearTipoDocumento();
         int documento = vista.solicitarDocumento();
         int telefono = vista.solicitarTelSocio();
         int creditos = vista.solicitarCreditosSocio();
         boolean estado = vista.solictarEstadoSocio();
 
-        Socio socio = new Socio(nombre, apellido, fechaAlta, fechaBaja, documento, tipoDocumento, codigoTipoDocumento, telefono, estado, creditos) ;
+        Socio socio = new Socio(nombre, apellido, fechaAlta, fechaBaja, documento, tipoDocumento, telefono, estado, creditos) ;
         listPersonas.add(socio);
         return socio;
     }
@@ -39,13 +41,12 @@ public class ControladorPersona {
         String apellido = vista.solicitarApellido();
         String fechaAlta = vista.solicitarFechaAlta();
         String fechaBaja = vista.solicitarFechaBaja();
-        String tipoDocumento = vista.tipoDocumentoDesc();
-        int codigoTipoDocumento = vista.solicitarCodigoDocumento();
+        TipoDocumento tipoDocumento = controladorTipoDocumento.crearTipoDocumento();
         int documento = vista.solicitarDocumento();
         int codigoInstructor = vista.solicitarCodigoInstructor();
 
 
-        Instructor instructor = new Socio(nombre, apellido, fechaAlta, fechaBaja, documento, tipoDocumento, codigoTipoDocumento, codigoInstructor);
+        Instructor instructor = new Instructor(nombre, apellido, fechaAlta, fechaBaja, documento, tipoDocumento, codigoInstructor);
         listPersonas.add(instructor);
         return instructor;
     }
