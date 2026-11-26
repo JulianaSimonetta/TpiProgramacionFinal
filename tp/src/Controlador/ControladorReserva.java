@@ -2,8 +2,10 @@ package Controlador;
 import Modelo.Persona;
 import Modelo.Reserva;
 import Modelo.Socio;
+import Modelo.Turno;
 import Vista.VistaReserva;
 import java.util.List;
+import Controlador.ControladorTurno;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ControladorReserva {
@@ -12,6 +14,7 @@ public class ControladorReserva {
     private Reserva modelo;
     private List<Reserva> listReservas;
     private ControladorPersona controladorPersona;
+    private ControladorTurno controladorTurno;
 
     public ControladorReserva(VistaReserva vista, List<Reserva> listReservas, ControladorPersona controladorPersona) {
         this.vista = vista;
@@ -21,11 +24,12 @@ public class ControladorReserva {
     public Reserva crearRerserva(){
         int codigoReserva = vista.solicitarCodigo();
         boolean estadoRerserva = vista.solicitarEstado();
-        // FALTA TURNO
-        Persona socioRerserva = controladorPersona.crearSocio();
+        Socio socioRerserva = controladorPersona.crearSocio();
         String fechaRerva = vista.solicitarFecha();
-        Reserva reserva = new Reserva(codigoReserva, turno, socioRerserva, estadoRerserva, fechaRerva);
+        Turno turno = controladorTurno.crearTurno();
+        Reserva reserva = new Reserva(codigoReserva, turno, estadoRerserva, socioRerserva);
         listReservas.add(reserva);
+        return reserva;
     }
 
     public Reserva filtrarReserva(int codigoRererva){
@@ -38,7 +42,7 @@ public class ControladorReserva {
     }
 
     public void CambiarEstado(){
-        modelo.cambiarEstado();
+        modelo.cancelarReserva(vista.solicitarFechaCancelacion());
         vista.avisarCambioEstado();
     }
 

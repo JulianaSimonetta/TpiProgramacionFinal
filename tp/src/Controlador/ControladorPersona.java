@@ -20,7 +20,7 @@ public class ControladorPersona {
         this.listPersonas = listPersonas;
     }
 
-    public Persona crearSocio(){
+    public Socio crearSocio(){
         String nombre = vista.solicitarNombre();
         String apellido = vista.solicitarApellido();
         String fechaAlta = vista.solicitarFechaAlta();
@@ -36,7 +36,7 @@ public class ControladorPersona {
         return socio;
     }
 
-    public Persona crearInstructor() {
+    public Instructor crearInstructor() {
         String nombre = vista.solicitarNombre();
         String apellido = vista.solicitarApellido();
         String fechaAlta = vista.solicitarFechaAlta();

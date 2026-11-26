@@ -4,9 +4,14 @@ import Modelo.Reserva;
 
 import java.util.Scanner;
 
+import Vista.VistaTurno;
+import Vista.VistaPersona;
 public class VistaReserva {
 
     private Scanner scanner = new Scanner(System.in);
+    private VistaTurno vistaTurno;
+    private VistaPersona vistaPersona;
+
 
     public int solicitarCodigo(){
         System.out.println("Ingrese el código de su reserva: ");
@@ -23,6 +28,11 @@ public class VistaReserva {
         return scanner.next();
     }
 
+    public String solicitarFechaCancelacion(){
+        System.out.println("Ingrese la fecha de cancelación: ");
+        return scanner.next();
+    }
+
     public void mostrarReserva(Reserva reserva){
         System.out.println("");
         System.out.println("===============================================");
@@ -30,10 +40,10 @@ public class VistaReserva {
         System.out.println("===============================================");
         System.out.println("- Codigo: " + reserva.getCodigo());
         System.out.println("- Estado: " + reserva.isEstado());
-        //System.out.println("- Turno: ");
-        //turno.mostrarTurno();
-        //System.out.println("- Socio: ");
-        //socio.mostrarSocio();
+        System.out.println("- Turno: ");
+        vistaTurno.mostrarTurno(reserva.getTurno());
+        System.out.println("- Socio: ");
+        vistaPersona.mostrarSocio(reserva.getSocio());
         System.out.println("");
         System.out.println("");
         System.out.println("");

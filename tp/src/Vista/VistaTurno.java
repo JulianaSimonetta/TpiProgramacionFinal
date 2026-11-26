@@ -1,5 +1,6 @@
 package Vista;
 
+import Modelo.Actividad;
 import Modelo.Turno;
 
 import java.util.Scanner;
@@ -33,9 +34,12 @@ public class VistaTurno {
         System.out.println("===============================================");
         System.out.println("                       TURNO                   ");
         System.out.println("===============================================");
-        System.out.println("- Código: " + turno.getCodigo());
-        //System.out.println("- Actividad: ");
-        actividad.mostrarActividad();
+        System.out.println("- Código turno: " + turno.getCodigo());
+        System.out.println("");
+        System.out.println("- Actividad: ");
+        System.out.println("   Descripción: " + turno.getActividad().getDescripcion());
+        System.out.println("   Código: " + turno.getActividad().getCodigo());
+        System.out.println("");
         System.out.println("- Cupo máximo: " + turno.getCupoMax());
         System.out.println("- Cupos disponibles: " + turno.getCuposDisponibles());
         System.out.println("- Fecha: " + turno.getFecha());

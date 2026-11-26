@@ -19,18 +19,17 @@ public class Reserva {
         this.fecha = fecha;
     }
 
-    public void cancelarTurno(String fechaCancelacion){
+    public void cancelarReserva(String fechaCancelacion){
         if (turno.getFecha() == fechaCancelacion){
-            System.out.print("No es posible cancelar el turno");
-
+            System.out.print("No es posible cancelar el turno el mismo día.");
         }
         else {
             socio.setCreditos(socio.verCreditos() + 1);
+            this.cambiarEstado();
         }
     }
 
     public void restarCupo(){
-
         this.turno.setCuposDisponibles(turno.getCuposDisponibles() - 1);
     }
 
