@@ -17,4 +17,9 @@ public class Instructor extends Persona{
     public void setCodigoInstructor(int codigoInstructor) {
         this.codigoInstructor = codigoInstructor;
     }
+
+    public void darDeBaja(String fechaBaja){
+        this.setFechaBaja(fechaBaja);
+    }
+
 }

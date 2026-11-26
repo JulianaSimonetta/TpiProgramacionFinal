@@ -51,13 +51,21 @@ public class ControladorPersona {
         return instructor;
     }
 
-    public Persona filtarSocio(int documento){
-        Persona socioFiltrado = null;
-        for (Persona socio: listPersonas){
-            if (documento == socio.getDocumento()){
-                socioFiltrado = socio;
+    public Socio filtrarSocio(int documento) {
+        for (Persona persona : listPersonas) {
+            if (persona instanceof Socio socio && persona.getDocumento() == documento) {
+                return socio;
             }
         }
-        return socioFiltrado;
+        return null;
+    }
+
+    public Instructor filtrarInstructor(int documento) {
+        for (Persona persona : listPersonas) {
+            if (persona instanceof Instructor instructor && persona.getDocumento() == documento) {
+                return instructor;
+            }
+        }
+        return null;
     }
 }

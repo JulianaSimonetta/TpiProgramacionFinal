@@ -19,7 +19,7 @@ public class Reserva {
         this.fecha = fecha;
     }
 
-    public void cancelarTurno(Date fechaCancelacion){
+    public void cancelarTurno(String fechaCancelacion){
         if (turno.getFecha() == fechaCancelacion){
             System.out.print("No es posible cancelar el turno");
 
@@ -29,33 +29,13 @@ public class Reserva {
         }
     }
 
-    public void mostrarReserva(){
-        System.out.println("");
-        System.out.println("===============================================");
-        System.out.println("                      RESERVA                  ");
-        System.out.println("===============================================");
-        System.out.println("- Codigo: " + codigo);
-        System.out.println("- Estado: " + estado);
-        //System.out.println("- Turno: ");
-        turno.mostrarTurno();
-        //System.out.println("- Socio: ");
-        socio.mostrarSocio();
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
-    }
-
     public void restarCupo(){
+
         this.turno.setCuposDisponibles(turno.getCuposDisponibles() - 1);
     }
 
-    public void descontarCreditoSocio(){
-        socio.setCreditos(socio.verCreditos() - 1);
-    }
-
-
-
     public int getCodigo() {
+
         return codigo;
     }
 
@@ -83,7 +63,11 @@ public class Reserva {
         return estado;
     }
 
-    public void setEstado(boolean estado) {
-        this.estado = estado;
+    public void cambiarEstado() {
+        this.estado = !this.estado;
+    }
+
+    public void descontarCreditoSocio(){
+        this.getSocio().setCreditos(this.getSocio().verCreditos() - 1);
     }
 }

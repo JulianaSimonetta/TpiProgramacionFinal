@@ -18,22 +18,6 @@ public class Turno {
         this.cuposDisponibles = cuposDisponibles;
     }
 
-    public void mostrarTurno(){
-        System.out.println(" ");
-        System.out.println("===============================================");
-        System.out.println("                       TURNO                   ");
-        System.out.println("===============================================");
-        System.out.println("- Código: " + getCodigo());
-        //System.out.println("- Actividad: ");
-        actividad.mostrarActividad();
-        System.out.println("- Cupo máximo: " + getCupoMax());
-        System.out.println("- Cupos disponibles: " + getCuposDisponibles());
-        System.out.println("- Fecha: " + getFecha());
-        System.out.println("- Reservas: " + (getCupoMax() - getCuposDisponibles()));
-        System.out.println(" ");
-        System.out.println(" ");
-    }
-
     public int getCodigo() {
         return codigo;
     }
@@ -72,5 +56,9 @@ public class Turno {
 
     public void setCuposDisponibles(int cuposDisponibles) {
         this.cuposDisponibles = cuposDisponibles;
+    }
+
+    public int consultarReservas(){
+        return this.getCupoMax() - this.getCuposDisponibles();
     }
 }
