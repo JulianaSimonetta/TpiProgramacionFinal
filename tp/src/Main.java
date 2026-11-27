@@ -1,17 +1,21 @@
-import Controlador.ControladorActividad;
-import Controlador.ControladorPersona;
-import Controlador.ControladorTipoDocumento;
-import Controlador.ControladorTurno;
-import Controlador.ControladorReserva;
+import Controlador.*;
 import Modelo.*;
 import Vista.*;
+import BD.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+
+        // CONEXION A LA BD
+        Conexion conexionBD = new Conexion();
+        conexionBD.conectar();
+        Inicializador inicializadorBD = new Inicializador();
+        Inicializador.inicializar();
 
         //TIPO DOCUMENTO
         ArrayList<TipoDocumento> documentos = new ArrayList<>();

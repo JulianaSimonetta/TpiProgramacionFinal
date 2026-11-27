@@ -1,9 +1,11 @@
 package Controlador;
+import BD.TipoDocumentoDAO;
 
 import Modelo.Socio;
 import Modelo.TipoDocumento;
 import Vista.VistaTipoDocumento;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -11,13 +13,15 @@ public class ControladorTipoDocumento {
     private VistaTipoDocumento vista;
     private VistaTipoDocumento modelo;
     private List<TipoDocumento> listDocumentos;
+    private TipoDocumentoDAO tipoDocumentoDAO;
 
     public ControladorTipoDocumento(VistaTipoDocumento vista, List<TipoDocumento> listDocumentos) {
         this.vista = vista;
         this.listDocumentos = listDocumentos;
+        this.tipoDocumentoDAO = new TipoDocumentoDAO();
     }
 
-    public void mostrarMenu() {
+    public void mostrarMenu() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         int opcion;
 
@@ -61,14 +65,16 @@ public class ControladorTipoDocumento {
                     break;
 
                 case 3:
-                    System.out.println("\n--- Listado de Tipos de Documento ---");
-                    if (listDocumentos.isEmpty()) {
-                        System.out.println("No hay tipos de documento registrados");
-                    } else {
-                        for (TipoDocumento td : listDocumentos) {
-                            System.out.println("- Codigo: " + td.getCodigo() + " | Descripcion: " + td.getDescripcion());
-                        }
-                    }
+                    //System.out.println("\n--- Listado de Tipos de Documento ---");
+                    //if (listDocumentos.isEmpty()) {
+                    //    System.out.println("No hay tipos de documento registrados");
+                    //} else {
+                        //for (TipoDocumento td : listDocumentos) {
+                          //  System.out.println("- Codigo: " + td.getCodigo() + " | Descripcion: " + td.getDescripcion());
+                        //}
+                      //  tipoDocumentoDAO.listarTiposDocumento();
+                    //}
+                    tipoDocumentoDAO.listarTiposDocumento();
                     break;
 
                 case 4:
@@ -78,11 +84,13 @@ public class ControladorTipoDocumento {
         } while (opcion != 4);
     }
 
-    public TipoDocumento crearTipoDocumento(){
+    public TipoDocumento crearTipoDocumento() throws SQLException {
         int codigo = vista.solicitarCodigoTipoDocumento();
         String descripcion = vista.solicitarDescripcionTipoDocumento();
 
         TipoDocumento tipoDocumento = new TipoDocumento(codigo, descripcion);
+        // Guardar en la BD
+        tipoDocumentoDAO.registrarTipoDocumento(descripcion);
         listDocumentos.add(tipoDocumento);
         return tipoDocumento;
     }

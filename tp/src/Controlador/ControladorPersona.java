@@ -6,6 +6,7 @@ import Modelo.Socio;
 import Modelo.TipoDocumento;
 import Vista.VistaPersona;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,7 +23,7 @@ public class ControladorPersona {
     }
 
 
-    public Socio crearSocio(){
+    public Socio crearSocio() throws SQLException {
         String nombre = vista.solicitarNombre();
         String apellido = vista.solicitarApellido();
         String fechaAlta = vista.solicitarFechaAlta();
@@ -38,7 +39,7 @@ public class ControladorPersona {
         return socio;
     }
 
-    public Instructor crearInstructor() {
+    public Instructor crearInstructor() throws SQLException {
         String nombre = vista.solicitarNombre();
         String apellido = vista.solicitarApellido();
         String fechaAlta = vista.solicitarFechaAlta();
@@ -70,7 +71,7 @@ public class ControladorPersona {
         return null;
     }
 
-    public void mostrarMenuSocio() {
+    public void mostrarMenuSocio() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         int opcion;
 
@@ -164,7 +165,7 @@ public class ControladorPersona {
         } while (opcion != 6);
     }
 
-    public void mostrarMenuInstructor() {
+    public void mostrarMenuInstructor() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         int opcion;
 

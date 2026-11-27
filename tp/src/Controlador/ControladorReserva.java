@@ -4,6 +4,8 @@ import Modelo.Reserva;
 import Modelo.Socio;
 import Modelo.Turno;
 import Vista.VistaReserva;
+
+import java.sql.SQLException;
 import java.util.List;
 import Controlador.ControladorTurno;
 
@@ -25,7 +27,7 @@ public class ControladorReserva {
         this.controladorTurno = controladorTurno;
     }
 
-    public void mostrarMenu() {
+    public void mostrarMenu() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         int opcion;
 
@@ -136,7 +138,7 @@ public class ControladorReserva {
         } while (opcion != 8);
     }
 
-    public Reserva crearRerserva(){
+    public Reserva crearRerserva() throws SQLException {
         int codigoReserva = vista.solicitarCodigo();
         Socio socioRerserva = controladorPersona.crearSocio();
         String fechaRerva = vista.solicitarFecha();
