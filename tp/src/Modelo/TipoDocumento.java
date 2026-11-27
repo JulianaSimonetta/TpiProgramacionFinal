@@ -1,4 +1,4 @@
-﻿package Modelo;
+package Modelo;
 
 public class TipoDocumento {
     private int codigo;

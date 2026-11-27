@@ -1,5 +1,4 @@
-﻿package Modelo;
-
+package Modelo;
 public class Actividad {
     private int codigo;
     private String descripcion;
