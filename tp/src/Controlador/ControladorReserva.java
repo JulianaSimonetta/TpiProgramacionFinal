@@ -23,11 +23,10 @@ public class ControladorReserva {
 
     public Reserva crearRerserva(){
         int codigoReserva = vista.solicitarCodigo();
-        boolean estadoRerserva = vista.solicitarEstado();
         Socio socioRerserva = controladorPersona.crearSocio();
         String fechaRerva = vista.solicitarFecha();
         Turno turno = controladorTurno.crearTurno();
-        Reserva reserva = new Reserva(codigoReserva, turno, estadoRerserva, socioRerserva);
+        Reserva reserva = new Reserva(codigoReserva, turno, socioRerserva);
         listReservas.add(reserva);
         return reserva;
     }

@@ -9,10 +9,10 @@ public class Reserva {
     private boolean estado;
     private String fecha;
 
-    public Reserva(int codigo, Turno turno, boolean estado, Socio socio) {
+    public Reserva(int codigo, Turno turno, Socio socio) {
         this.codigo = codigo;
         this.turno = turno;
-        this.estado = estado;
+        this.estado = true;
         this.socio = socio;
         restarCupo();
         descontarCreditoSocio();
