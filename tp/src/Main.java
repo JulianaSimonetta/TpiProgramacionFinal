@@ -11,6 +11,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws SQLException {
 
+        VistaMain vistaMain = new VistaMain();
+
         // CONEXION A LA BD
         Conexion conexionBD = new Conexion();
         conexionBD.conectar();
@@ -47,18 +49,7 @@ public class Main {
         int opcion;
 
         do {
-            System.out.println("\n===============================================");
-            System.out.println("                 MENU PRINCIPAL                ");
-            System.out.println("===============================================");
-            System.out.println("1. Tipos de Documento");
-            System.out.println("2. Actividades");
-            System.out.println("3. Socios");
-            System.out.println("4. Instructores");
-            System.out.println("5. Turnos");
-            System.out.println("6. Reservas");
-            System.out.println("7. Salir");
-            System.out.print("Elija una opcion: ");
-
+            vistaMain.printMenu();
             opcion = scanner.nextInt();
 
             switch (opcion) {
@@ -87,11 +78,11 @@ public class Main {
                     break;
 
                 case 7:
-                    System.out.println("Saliendo del sistema...");
+                    vistaMain.printSaliendoDelSistema();
                     break;
 
                 default:
-                    System.out.println("Opcion invalida");
+                    vistaMain.printOpcionInvalida();
                     break;
             }
         } while (opcion != 7);
