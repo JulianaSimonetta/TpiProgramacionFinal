@@ -53,6 +53,7 @@ public class ControladorActividad {
                             encontrada = true;
                             break;
                         }
+                        break;
                     }
 
                 case 3:

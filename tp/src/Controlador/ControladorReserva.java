@@ -18,10 +18,11 @@ public class ControladorReserva {
     private ControladorPersona controladorPersona;
     private ControladorTurno controladorTurno;
 
-    public ControladorReserva(VistaReserva vista, List<Reserva> listReservas, ControladorPersona controladorPersona) {
+    public ControladorReserva(VistaReserva vista, List<Reserva> listReservas, ControladorPersona controladorPersona, ControladorTurno controladorTurno) {
         this.vista = vista;
         this.listReservas = listReservas;
         this.controladorPersona = controladorPersona;
+        this.controladorTurno = controladorTurno;
     }
 
     public void mostrarMenu() {

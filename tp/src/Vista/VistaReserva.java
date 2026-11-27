@@ -9,8 +9,8 @@ import Vista.VistaPersona;
 public class VistaReserva {
 
     private Scanner scanner = new Scanner(System.in);
-    private VistaTurno vistaTurno;
-    private VistaPersona vistaPersona;
+    private VistaTurno vistaTurno = new VistaTurno();
+    private VistaPersona vistaPersona =  new VistaPersona();
 
 
     public int solicitarCodigo(){
