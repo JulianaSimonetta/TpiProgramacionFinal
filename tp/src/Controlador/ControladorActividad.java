@@ -13,9 +13,8 @@ public class ControladorActividad {
 
     private List<Actividad> listActividad;
 
-    public ControladorActividad(VistaActividad vista, Actividad modelo, List<Actividad> listActividad) {
+    public ControladorActividad(VistaActividad vista, List<Actividad> listActividad) {
         this.vista = vista;
-        this.modelo = modelo;
         this.listActividad = listActividad;
     }
 

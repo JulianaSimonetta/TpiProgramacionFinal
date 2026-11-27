@@ -5,7 +5,7 @@ import Modelo.Actividad;
 import java.util.Scanner;
 
 public class VistaActividad {
-    private Scanner scanner;
+    private Scanner scanner = new Scanner(System.in);
 
     public void mostrarActividad(Actividad actividad){
         System.out.println(" ");
