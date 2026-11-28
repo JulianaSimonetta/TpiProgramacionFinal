@@ -81,4 +81,17 @@ public class ControladorActividad {
         listActividad.add(actividad);
         return actividad;
     }
+
+    public Actividad buscarActividad(int codigo) {
+        for (Actividad actividad : listActividad) {
+            if (actividad.getCodigo() == codigo) {
+                return actividad;
+            }
+        }
+        return null;
+    }
+
+    public List<Actividad> obtenerActividades() {
+        return listActividad;
+    }
 }

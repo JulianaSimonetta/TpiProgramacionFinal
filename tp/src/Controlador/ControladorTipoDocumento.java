@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class ControladorTipoDocumento {
     private VistaTipoDocumento vista;
     private VistaTipoDocumento modelo;
-    private List<TipoDocumento> listDocumentos;
+    private static List<TipoDocumento> listDocumentos;
     private TipoDocumentoDAO tipoDocumentoDAO;
 
     public ControladorTipoDocumento(VistaTipoDocumento vista, List<TipoDocumento> listDocumentos) {
@@ -69,10 +69,10 @@ public class ControladorTipoDocumento {
                     //if (listDocumentos.isEmpty()) {
                     //    System.out.println("No hay tipos de documento registrados");
                     //} else {
-                        //for (TipoDocumento td : listDocumentos) {
-                          //  System.out.println("- Codigo: " + td.getCodigo() + " | Descripcion: " + td.getDescripcion());
-                        //}
-                      //  tipoDocumentoDAO.listarTiposDocumento();
+                    //for (TipoDocumento td : listDocumentos) {
+                    //  System.out.println("- Codigo: " + td.getCodigo() + " | Descripcion: " + td.getDescripcion());
+                    //}
+                    //  tipoDocumentoDAO.listarTiposDocumento();
                     //}
                     tipoDocumentoDAO.listarTiposDocumento();
                     break;
@@ -93,5 +93,14 @@ public class ControladorTipoDocumento {
         tipoDocumentoDAO.registrarTipoDocumento(descripcion);
         listDocumentos.add(tipoDocumento);
         return tipoDocumento;
+    }
+
+    public static TipoDocumento filtrarTipoDocumento(int codigo){
+        for (TipoDocumento tipoDocumento: listDocumentos){
+            if (codigo == tipoDocumento.getCodigo()){
+                return tipoDocumento;
+            }
+        }
+        return null;
     }
 }

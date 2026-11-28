@@ -12,7 +12,8 @@ public class VistaMain {
         System.out.println("4. Instructores");
         System.out.println("5. Turnos");
         System.out.println("6. Reservas");
-        System.out.println("7. Salir");
+        System.out.println("7. Plantilla turno");
+        System.out.println("8. Salir");
         System.out.print("Elija una opcion: ");
     }
 

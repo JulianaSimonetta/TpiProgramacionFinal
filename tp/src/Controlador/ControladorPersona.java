@@ -5,7 +5,6 @@ import Modelo.Persona;
 import Modelo.Socio;
 import Modelo.TipoDocumento;
 import Vista.VistaPersona;
-
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
@@ -28,7 +27,12 @@ public class ControladorPersona {
         String apellido = vista.solicitarApellido();
         String fechaAlta = vista.solicitarFechaAlta();
         String fechaBaja = vista.solicitarFechaBaja();
-        TipoDocumento tipoDocumento = controladorTipoDocumento.crearTipoDocumento();
+        int codigoTipoDocumento = vista.solicitarCodigoDocumento();
+        TipoDocumento tipoDocumento = ControladorTipoDocumento.filtrarTipoDocumento(codigoTipoDocumento);
+        if (tipoDocumento == null) {
+            vista.noExisteTipoDeDocumento();
+            return null;
+        }
         int documento = vista.solicitarDocumento();
         int telefono = vista.solicitarTelSocio();
         int creditos = vista.solicitarCreditosSocio();
@@ -44,7 +48,12 @@ public class ControladorPersona {
         String apellido = vista.solicitarApellido();
         String fechaAlta = vista.solicitarFechaAlta();
         String fechaBaja = vista.solicitarFechaBaja();
-        TipoDocumento tipoDocumento = controladorTipoDocumento.crearTipoDocumento();
+        int codigoTipoDocumento = vista.solicitarCodigoDocumento();
+        TipoDocumento tipoDocumento = ControladorTipoDocumento.filtrarTipoDocumento(codigoTipoDocumento);
+        if (tipoDocumento == null) {
+            vista.noExisteTipoDeDocumento();
+            return null;
+        }
         int documento = vista.solicitarDocumento();
         int codigoInstructor = vista.solicitarCodigoInstructor();
 
@@ -76,30 +85,18 @@ public class ControladorPersona {
         int opcion;
 
         do {
-            System.out.println("\n===============================================");
-            System.out.println("                  MENU SOCIOS                  ");
-            System.out.println("===============================================");
-            System.out.println("1. Crear Socio");
-            System.out.println("2. Mostrar Socios");
-            System.out.println("3. Modificar Socio");
-            System.out.println("4. Ver Creditos");
-            System.out.println("5. Cambiar Estado");
-            System.out.println("6. Volver / Salir");
-            System.out.print("Elija una opcion: ");
-
+            vista.menuSocio();
             opcion = scanner.nextInt();
 
             switch (opcion) {
                 case 1:
                     System.out.println("\n--- Nuevo Socio ---");
                     crearSocio();
-                    System.out.println("Socio creado");
                     break;
 
                 case 2: {
                     System.out.println("\n--- Listado de Socios ---");
                     boolean haySocios = false;
-
                     for (Persona persona : listPersonas) {
                         if (persona instanceof Socio socio) {
                             vista.mostrarPersona(socio);
@@ -107,9 +104,8 @@ public class ControladorPersona {
                             haySocios = true;
                         }
                     }
-
                     if (!haySocios) {
-                        System.out.println("No hay socios registrados");
+                        vista.noHaySociosCreados();
                     }
                     break;
                 }
@@ -124,7 +120,7 @@ public class ControladorPersona {
                         socio.setTelefono(vista.solicitarTelSocio());
                         System.out.println("Socio modificado");
                     } else {
-                        System.out.println("No se encontro un socio con ese documento");
+                        vista.noSeEncontroSocioConDni();
                     }
                     break;
                 }
@@ -134,9 +130,9 @@ public class ControladorPersona {
                     Socio socio = filtrarSocio(vista.solicitarDocumento());
 
                     if (socio != null) {
-                        System.out.println("Creditos: " + socio.verCreditos());
+                        vista.verCreditos(socio.verCreditos());
                     } else {
-                        System.out.println("No se encontro un socio con ese documento");
+                        vista.noSeEncontroSocioConDni();
                     }
                     break;
                 }
@@ -149,7 +145,7 @@ public class ControladorPersona {
                         socio.cambiarEstado();
                         System.out.println("Nuevo estado: " + socio.getEstado());
                     } else {
-                        System.out.println("No se encontro un socio con ese documento");
+                        vista.noSeEncontroSocioConDni();
                     }
                     break;
                 }
@@ -170,16 +166,7 @@ public class ControladorPersona {
         int opcion;
 
         do {
-            System.out.println("\n===============================================");
-            System.out.println("               MENU INSTRUCTORES               ");
-            System.out.println("===============================================");
-            System.out.println("1. Crear Instructor");
-            System.out.println("2. Mostrar Instructores");
-            System.out.println("3. Modificar Instructor");
-            System.out.println("4. Dar de Baja");
-            System.out.println("5. Volver / Salir");
-            System.out.print("Elija una opcion: ");
-
+            vista.menuInstructor();
             opcion = scanner.nextInt();
 
             switch (opcion) {

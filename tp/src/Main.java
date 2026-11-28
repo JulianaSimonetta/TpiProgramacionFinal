@@ -1,7 +1,8 @@
+import BD.Conexion;
+import BD.Inicializador;
 import Controlador.*;
 import Modelo.*;
 import Vista.*;
-import BD.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -10,7 +11,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-
         VistaMain vistaMain = new VistaMain();
 
         // CONEXION A LA BD
@@ -39,6 +39,12 @@ public class Main {
         VistaTurno vista2 = new VistaTurno();
         ControladorTurno controlador2 = new ControladorTurno(vista2, turnos, controlador1);
 
+        // PLANTILLA DE TURNOS
+        ArrayList<PlantillaTurno> plantillasTurno = new ArrayList<>();
+        VistaPlantillaTurno vistaPlantillaTurno = new VistaPlantillaTurno();
+        ControladorPlantillaTurno controladorPlantillaTurno = new ControladorPlantillaTurno(
+                vistaPlantillaTurno, plantillasTurno, turnos, controlador1, vista2);
+
         //RESERVA
         ArrayList<Reserva> reservas = new ArrayList<>();
         VistaReserva vista3 = new VistaReserva();
@@ -50,6 +56,7 @@ public class Main {
 
         do {
             vistaMain.printMenu();
+
             opcion = scanner.nextInt();
 
             switch (opcion) {
@@ -78,6 +85,10 @@ public class Main {
                     break;
 
                 case 7:
+                    controladorPlantillaTurno.mostrarMenu();
+                    break;
+
+                case 8:
                     vistaMain.printSaliendoDelSistema();
                     break;
 
@@ -85,6 +96,6 @@ public class Main {
                     vistaMain.printOpcionInvalida();
                     break;
             }
-        } while (opcion != 7);
+        } while (opcion != 8);
     }
 }

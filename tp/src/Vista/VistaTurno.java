@@ -29,6 +29,11 @@ public class VistaTurno {
         return scanner.nextInt();
     }
 
+    public String solicitarHoraTurno(){
+        System.out.println("Ingrese la hora del turno: ");
+        return scanner.next();
+    }
+
     public void mostrarTurno(Turno turno){
         System.out.println(" ");
         System.out.println("===============================================");
@@ -46,5 +51,40 @@ public class VistaTurno {
         System.out.println("- Reservas: " + turno.consultarReservas());
         System.out.println(" ");
         System.out.println(" ");
+    }
+
+    public void mostrarMenu(){
+        System.out.println("\n===============================================");
+        System.out.println("                  MENU TURNOS                  ");
+        System.out.println("===============================================");
+        System.out.println("1. Mostrar Turno");
+        System.out.println("2. Consultar Reservas");
+        System.out.println("3. Ver Cupos Disponibles");
+        System.out.println("4. Volver / Salir");
+        System.out.print("Elija una opcion: ");
+    }
+
+    public void noHayTurnosRegistrados(){
+        System.out.println("No hay turnos registrados");
+    }
+
+    public void salirDelMenu(){
+        System.out.println("Salir del menu de turnos");
+    }
+
+    public void opcionInvalida(){
+        System.out.println("Opcion invalida");
+    }
+
+    public void  mostrarReservas(int reservas){
+        System.out.println("Reservas: " + reservas);
+    }
+
+    public void mostrarCuposDisponibles(int cupos){
+        System.out.println("Cupos disponibles: " + cupos);
+    }
+
+    public void turnoNoEncontrado(){
+        System.out.println("No se encontró un turno con ese código.");
     }
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import Controlador.ControladorTurno;
 
 import java.util.Scanner;
+import Vista.*;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class ControladorReserva {
@@ -19,6 +20,8 @@ public class ControladorReserva {
     private List<Reserva> listReservas;
     private ControladorPersona controladorPersona;
     private ControladorTurno controladorTurno;
+    private VistaTurno vistaTurno;
+    private VistaPersona vistaPersona;
 
     public ControladorReserva(VistaReserva vista, List<Reserva> listReservas, ControladorPersona controladorPersona, ControladorTurno controladorTurno) {
         this.vista = vista;
@@ -50,8 +53,8 @@ public class ControladorReserva {
             switch (opcion) {
                 case 1:
                     System.out.println("\n--- Crear Reserva ---");
-                        crearRerserva();
-                        System.out.println("Reserva creada");
+                    crearRerserva();
+                    System.out.println("Reserva creada");
                     break;
 
                 case 2:
@@ -138,12 +141,40 @@ public class ControladorReserva {
         } while (opcion != 8);
     }
 
-    public Reserva crearRerserva() throws SQLException {
+    //public Reserva crearRerserva() throws SQLException {
+    //    int codigoReserva = vista.solicitarCodigo();
+    //    Socio socioRerserva = controladorPersona.crearSocio();
+    //    String fechaRerva = vista.solicitarFecha();
+    //    Turno turno = controladorTurno.filtrarTurno(vistaTurno.solicitarCodigo());
+    //    Reserva reserva = new Reserva(codigoReserva, turno, socioRerserva);
+    //    listReservas.add(reserva);
+    //    return reserva;
+    //}
+
+    public Reserva crearRerserva()throws SQLException {
         int codigoReserva = vista.solicitarCodigo();
-        Socio socioRerserva = controladorPersona.crearSocio();
-        String fechaRerva = vista.solicitarFecha();
-        Turno turno = controladorTurno.crearTurno();
-        Reserva reserva = new Reserva(codigoReserva, turno, socioRerserva);
+        int codigoTipoDocumento = vista.solicitarCodigoTipoDocumento();
+        int dni = vista.solicitarDniSocio();
+        Socio socio = controladorPersona.filtrarSocio(dni);
+        if (socio == null) {
+            System.out.println("No existe un socio con ese tipo y número de documento");
+            return null;
+        }
+        int codigoTurno = vista.solicitarCodigoTurno();
+        Turno turno = controladorTurno.filtrarTurno(codigoTurno);
+        if (turno == null) {
+            System.out.println("No existe un turno con ese código");
+            return null;
+        }
+        if (turno.getCuposDisponibles() <= 0) {
+            System.out.println("El turno no tiene cupos disponibles");
+            return null;
+        }
+        if (socio.verCreditos() <= 0) {
+            System.out.println("El socio no tiene créditos disponibles");
+            return null;
+        }
+        Reserva reserva = new Reserva(codigoReserva, turno, socio);
         listReservas.add(reserva);
         return reserva;
     }

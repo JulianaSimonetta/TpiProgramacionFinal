@@ -53,5 +53,18 @@ public class VistaReserva {
         System.out.println("Cambio de estado realizado !");
     }
 
+    public int solicitarCodigoTipoDocumento() {
+        System.out.print("Ingrese el código del tipo de documento: ");
+        return scanner.nextInt();
+    }
 
+    public int solicitarDniSocio() {
+        System.out.print("Ingrese el DNI del socio: ");
+        return scanner.nextInt();
+    }
+
+    public int solicitarCodigoTurno() {
+        System.out.print("Ingrese el código del turno: ");
+        return scanner.nextInt();
+    }
 }
